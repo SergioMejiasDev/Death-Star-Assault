@@ -24733,6 +24733,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 150
   shootPoint: {fileID: 3395450857645100219}
+  bullet: {fileID: 8697420509997763510, guid: 3a7ab3e9378d92942b1d52a9c00a3738, type: 3}
   maxHealth: 2
   health: 0
   sliderHealth: {fileID: 1800660804424662683}
