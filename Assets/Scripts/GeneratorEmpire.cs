@@ -1,14 +1,14 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Script that is responsible for generating enemies in Empire mode.
+/// Class that is responsible for generating enemies in Empire mode.
 /// </summary>
 public class GeneratorEmpire : MonoBehaviour
 {
     int maxEnemies = 1000000;
     [SerializeField] float timeBetweenEnemies = 4;
+    [SerializeField] GameObject player = null;
 
     private void Start()
     {
@@ -47,8 +47,12 @@ public class GeneratorEmpire : MonoBehaviour
         {
             if (maxEnemies > 0 && GameManager.manager.enemyNumber <= 30)
             {
-                GenerateEnemy();
+                if (player != null)
+                {
+                    GenerateEnemy();
+                }
             }
+            
             yield return new WaitForSeconds(timeBetweenEnemies);
         }
     }

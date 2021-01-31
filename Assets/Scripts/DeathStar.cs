@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Script used by the Death Star in Alliance mode.
+/// Class used by the Death Star in Alliance mode.
 /// </summary>
 public class DeathStar : MonoBehaviour
 {
@@ -12,6 +11,8 @@ public class DeathStar : MonoBehaviour
     [SerializeField] int maxEnemies = 100;
     [SerializeField] float timeBetweenEnemies = 2;
     [SerializeField] GameObject panelVictory = null;
+    [SerializeField] Timer timer = null;
+    [SerializeField] GameObject player = null;
 
     [SerializeField] int maxHealth = 200;
     int health;
@@ -66,6 +67,7 @@ public class DeathStar : MonoBehaviour
                 textHealth.text = ("Death Star: 0 %");
                 Instantiate(deadParticles, transform.position, transform.rotation);
                 panelVictory.SetActive(true);
+                timer.enabled = false;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 Destroy(gameObject);
@@ -83,7 +85,10 @@ public class DeathStar : MonoBehaviour
         {
             if (maxEnemies > 0 && GameManager.manager.enemyNumber <= 30)
             {
-                GenerateEnemy();
+                if (player != null)
+                {
+                    GenerateEnemy();
+                }
             }
             yield return new WaitForSeconds(timeBetweenEnemies);
         }

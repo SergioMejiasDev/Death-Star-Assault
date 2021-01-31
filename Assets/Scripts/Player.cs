@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Script that controls the main functions of the player in Alliance mode.
+/// Class that controls the main functions of the player in Alliance mode.
 /// </summary>
 public class Player : MonoBehaviour
 {
@@ -24,6 +22,7 @@ public class Player : MonoBehaviour
     [Header("Panels")]
     [SerializeField] GameObject panelPause = null;
     [SerializeField] GameObject panelGameOver = null;
+    [SerializeField] Timer timer = null;
 
     [Header("Health")]
     [SerializeField] int maxHealth = 150;
@@ -141,6 +140,7 @@ public class Player : MonoBehaviour
     public void Death()
     {
         panelGameOver.SetActive(true);
+        timer.enabled = false;
         health = 0;
         sliderHealth.value = 0;
         textHealth.text = ("Player Ship: 0 %");
@@ -154,6 +154,6 @@ public class Player : MonoBehaviour
             deadParticles.transform.position = transform.position;
             deadParticles.transform.rotation = transform.rotation;
         }
-        gameObject.SetActive(false);
+        Destroy(gameObject);
     }
 }

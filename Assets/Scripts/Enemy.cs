@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Script that takes care of the main enemy functions in Alliance mode.
+/// Class that takes care of the main enemy functions in Alliance mode.
 /// </summary>
 public class Enemy : MonoBehaviour
 {
@@ -29,7 +27,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.Find("PlayerAlliance").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         health = maxHealth;
         sliderHealth.maxValue = maxHealth;
         sliderHealth.value = maxHealth;

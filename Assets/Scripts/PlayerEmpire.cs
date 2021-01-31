@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Script that controls the main functions of the player in Empire mode.
+/// Class that controls the main functions of the player in Empire mode.
 /// </summary>
 public class PlayerEmpire : MonoBehaviour
 {
@@ -24,6 +22,7 @@ public class PlayerEmpire : MonoBehaviour
     [Header("Panels")]
     [SerializeField] GameObject panelPause = null;
     [SerializeField] GameObject panelGameOver = null;
+    [SerializeField] Timer timer = null;
 
     [Header("Health")]
     [SerializeField] int maxHealth = 100;
@@ -138,6 +137,7 @@ public class PlayerEmpire : MonoBehaviour
     public void Death()
     {
         panelGameOver.SetActive(true);
+        timer.enabled = false;
         health = 0;
         sliderHealth.value = 0;
         textHealth.text = ("Player Ship: 0 %");

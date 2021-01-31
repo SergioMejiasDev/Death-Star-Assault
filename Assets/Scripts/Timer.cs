@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Script that manages the timer in the scene.
+/// Class that manages the timer in the scene.
 /// </summary>
 public class Timer : MonoBehaviour
 {

@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Script that manages the main functions of the enemies in Empire mode.
+/// Class that manages the main functions of the enemies in Empire mode.
 /// </summary>
 public class EnemyEmpire : MonoBehaviour
 {
@@ -28,8 +26,8 @@ public class EnemyEmpire : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.Find("PlayerEmpire").transform;
-        deathStar = GameObject.Find("Death Star").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        deathStar = GameObject.FindGameObjectWithTag("DeathStar").transform;
         sliderHealth.maxValue = maxHealth;
         sliderHealth.value = maxHealth;
         dead = false;
@@ -109,7 +107,9 @@ public class EnemyEmpire : MonoBehaviour
     void ChooseDestiny()
     {
         if (deathStar != null)
-        destiny = new Vector3(Random.Range(deathStar.position.x - 500, deathStar.position.x + 500), Random.Range(deathStar.position.y - 500, deathStar.position.y + 500), Random.Range(deathStar.position.z - 500, deathStar.position.z + 500));
+        {
+            destiny = new Vector3(Random.Range(deathStar.position.x - 500, deathStar.position.x + 500), Random.Range(deathStar.position.y - 500, deathStar.position.y + 500), Random.Range(deathStar.position.z - 500, deathStar.position.z + 500));
+        }
     }
 
 }

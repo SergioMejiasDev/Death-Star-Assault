@@ -1,14 +1,13 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 /// <summary>
-/// Script that takes care of the functions of the Death Star in Empire mode.
+/// Class that takes care of the functions of the Death Star in Empire mode.
 /// </summary>
 public class DeathStarEmpire : MonoBehaviour
 {
     [SerializeField] GameObject panelGameOver = null;
+    [SerializeField] Timer timer = null;
     [SerializeField] int maxHealth = 3000;
     int health;
     [SerializeField] Slider sliderHealth = null;
@@ -39,7 +38,8 @@ public class DeathStarEmpire : MonoBehaviour
             {
                 textHealth.text = ("Death Star: 0 %");
                 Instantiate(deadParticles, transform.position, transform.rotation);
-                GetComponent<DeathStarEmpire>().panelGameOver.SetActive(true);
+                panelGameOver.SetActive(true);
+                timer.enabled = false;
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 Destroy(gameObject);

@@ -10,7 +10,7 @@ EditorBuildSettings:
     guid: b571e5fe7bd17474994e4516fc591d2f
   - enabled: 1
     path: Assets/Scenes/InGameAlliance.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    guid: d03ef290fbdd6af4c89ba72c9cdaa1eb
   - enabled: 1
     path: Assets/Scenes/InGameEmpire.unity
     guid: fd83d84e62ffe73479faf446e8081e6c
