@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6ad3dab416253b45a4aa3c2e194d8da, type: 3}
+  m_Name: Controls
+  m_EditorClassIdentifier: 
+  english: 'controls
+
+
+    use the wasd keys to move the ship. with the mouse you
+    can control the camera. use the left mousse button to shoot and the right button
+    to select alternate shoot. with left shift you can slightly increase your speed.
+
+
+
+    alliance
+    mode
+
+
+    your main objective is to destroy the death star, but before you can
+    attack it, you must destroy all the enemy ships. there are a total of 100 ships.
+
+
+
+    empire
+    mode
+
+
+    now, your goal is to protect the death star from the attack of enemy
+    ships. these will come in an unlimited way, and you must destroy them controlling
+    that the health of the ship and the death star do not reach zero.'
+  spanish: "controles\n\nusa las teclas wasd para mover la nave. con el rat\xF3n
+    puedes controlar la c\xE1mara. usa el bot\xF3n izquierdo del rat\xF3n para disparar
+    y el bot\xF3n derecho para elegir el disparo alternativo. con el bot\xF3n shift
+    izquierdo puedes aumentar tu velocidad.\n\n\nmodo alianza\n\ntu principal objetivo
+    es destruir la estrella de la muerte, pero antes de que puedas atacarle, deber\xE1s
+    destruir todas las naves enemigas. hay un total de 100 naves.\n\n\nmodo imperio\n\nahora,
+    tu objetivo ser\xE1 proteger la estrella de la muerte del ataque de las naves
+    enemigas. est\xE1s aparecer\xE1n de forma ilimitada, y deber\xE1s eliminarlas
+    vigilando que la salud de la nave o la estrella de la muerte no lleguen a cero."

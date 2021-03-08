@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -15,20 +16,27 @@ public class GameManager : MonoBehaviour
     [SerializeField] Text scoreEmpireText = null;
     public int enemyNumber;
     [SerializeField] GameObject[] panels = null;
-    [SerializeField] Toggle toggleMute = null;
+
+    [SerializeField] GameObject loadingPanel = null;
+    [SerializeField] Image fadeImage = null;
+    [SerializeField] Text loadingText = null;
 
     private void Awake()
     {
         manager = this;
         SetInitialScore();
+        Time.timeScale = 1;
+    }
+
+    private void Start()
+    {
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            if (AudioListener.volume == 0)
+            if (PlayerPrefs.GetInt("FirstTime") == 0)
             {
-                toggleMute.SetIsOnWithoutNotify(true);
+                ManagePanels(panels[3]);
             }
         }
-        Time.timeScale = 1;
     }
 
     /// <summary>
@@ -73,7 +81,7 @@ public class GameManager : MonoBehaviour
     /// <param name="buildIndex">Number of the scene we want to load.</param>
     public void LoadScene(int buildIndex)
     {
-        SceneManager.LoadScene(buildIndex);
+        StartCoroutine(Loading(buildIndex));
     }
 
     /// <summary>
@@ -89,21 +97,6 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Call to manage the options menu toggle.
-    /// </summary>
-    public void MuteAllSounds ()
-    {
-        if (AudioListener.volume == 1)
-        {
-            AudioListener.volume = 0;
-        }
-        else if (AudioListener.volume == 0)
-        {
-            AudioListener.volume = 1;
-        }
-    }
-
-    /// <summary>
     /// Function we call to open and close the panels in the menu.
     /// </summary>
     /// <param name="panel">Panel that we want to open.</param>
@@ -115,5 +108,33 @@ public class GameManager : MonoBehaviour
         }
 
         panel.SetActive(true);
+    }
+
+    /// <summary>
+    /// Coroutine started every time we change scene.
+    /// </summary>
+    /// <param name="sceneNumber">Scene we want to load.</param>
+    /// <returns></returns>
+    IEnumerator Loading(int sceneNumber)
+    {
+        Time.timeScale = 1;
+        loadingPanel.SetActive(true);
+
+        Color imageColor = fadeImage.color;
+        float alphaValue;
+
+        while (fadeImage.color.a < 1)
+        {
+            alphaValue = imageColor.a + (2 * Time.deltaTime);
+            imageColor = new Color(imageColor.r, imageColor.g, imageColor.b, alphaValue);
+            fadeImage.color = new Color(imageColor.r, imageColor.g, imageColor.b, alphaValue);
+            yield return null;
+        }
+
+        loadingText.enabled = true;
+
+        yield return new WaitForSeconds(0.5f);
+
+        SceneManager.LoadScene(sceneNumber);
     }
 }

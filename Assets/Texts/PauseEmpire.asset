@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6ad3dab416253b45a4aa3c2e194d8da, type: 3}
+  m_Name: PauseEmpire
+  m_EditorClassIdentifier: 
+  english: your goal is to protect the death star from the attack of enemy ships.
+    these will come in an unlimited way, and you must destroy them controlling that
+    the health of the ship and the death star do not reach zero.
+  spanish: "tu objetivo es proteger la estrella de la muerte del ataque de las naves
+    enemigas. estas aparecer\xE1n de forma ilimitada, y deber\xE1s destruirlas vigilando
+    que la salud de la nave o la estrella de la muerte no lleguen a cero."

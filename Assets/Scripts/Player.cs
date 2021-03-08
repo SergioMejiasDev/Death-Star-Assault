@@ -29,14 +29,26 @@ public class Player : MonoBehaviour
     int health;
     [SerializeField] Slider sliderHealth = null;
     [SerializeField] Text textHealth = null;
+    [SerializeField] MultilanguageText healthStringObject = null;
+    string healthString;
     #endregion
 
     private void Start()
     {
+        switch (MultilanguageManager.multilanguageManager.activeLanguage)
+        {
+            case "EN":
+                healthString = healthStringObject.english;
+                break;
+            case "ES":
+                healthString = healthStringObject.spanish;
+                break;
+        }
+
         health = maxHealth;
         sliderHealth.maxValue = maxHealth;
         sliderHealth.value = maxHealth;
-        textHealth.text = ("Player Ship: " + (health * 100 / maxHealth) + " %");
+        textHealth.text = healthString + "100 %";
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -81,7 +93,7 @@ public class Player : MonoBehaviour
         {
             health--;
             sliderHealth.value = health;
-            textHealth.text = ("Player Ship: " + (health * 100 / maxHealth) + " %");
+            textHealth.text = (healthString + (health * 100 / maxHealth) + " %");
 
             Destroy(other.gameObject);
 
@@ -143,7 +155,7 @@ public class Player : MonoBehaviour
         timer.enabled = false;
         health = 0;
         sliderHealth.value = 0;
-        textHealth.text = ("Player Ship: 0 %");
+        textHealth.text = (healthString + "0 %");
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
         Camera.main.transform.SetParent(null);

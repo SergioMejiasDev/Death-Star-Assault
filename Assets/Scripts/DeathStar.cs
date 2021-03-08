@@ -19,14 +19,26 @@ public class DeathStar : MonoBehaviour
     [SerializeField] Slider sliderHealth = null;
     [SerializeField] Text textHealth = null;
     [SerializeField] GameObject deadParticles = null;
+    [SerializeField] MultilanguageText healthStringObject = null;
+    string healthString;
 
     private void Start()
     {
+        switch (MultilanguageManager.multilanguageManager.activeLanguage)
+        {
+            case "EN":
+                healthString = healthStringObject.english;
+                break;
+            case "ES":
+                healthString = healthStringObject.spanish;
+                break;
+        }
+
         StartCoroutine(Spawner());
         health = maxHealth;
         sliderHealth.maxValue = maxHealth;
         sliderHealth.value = maxHealth;
-        textHealth.text = ("Death Star: " + (health * 100 / maxHealth) + " %");
+        textHealth.text = (healthString + "100 %");
     }
 
     /// <summary>
@@ -58,13 +70,13 @@ public class DeathStar : MonoBehaviour
         {
             health--;
             sliderHealth.value = health;
-            textHealth.text = ("Death Star: " + (health * 100 / maxHealth) + " %");
+            textHealth.text = (healthString + (health * 100 / maxHealth) + " %");
 
             Destroy(other.gameObject);
             
             if (health <= 0)
             {
-                textHealth.text = ("Death Star: 0 %");
+                textHealth.text = (healthString + "0 %");
                 Instantiate(deadParticles, transform.position, transform.rotation);
                 panelVictory.SetActive(true);
                 timer.enabled = false;
