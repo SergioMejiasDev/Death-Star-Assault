@@ -1,7 +1,7 @@
 # Death Star Assault
  Project carried out as a practice with the Unity engine, inspired by the Star Wars saga and totally programmed by me. The graphic assets (3D models and Skybox) and the music are not my property.
 
-It has been done using Unity version 2019.4.18f1.
+It has been done using Unity version 2019.4.21f1.
 
 The playable game can be downloaded from https://sergiomejias.itch.io/death-star-assault
 
