@@ -111,6 +111,15 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Function that is responsible for changing the language of all the texts in the game.
+    /// </summary>
+    /// <param name="language">The code of the language that we want to activate.</param>
+    public void ChangeLanguage(string language)
+    {
+        MultilanguageManager.multilanguageManager.ChangeLanguage(language);
+    }
+
+    /// <summary>
     /// Coroutine started every time we change scene.
     /// </summary>
     /// <param name="sceneNumber">Scene we want to load.</param>
