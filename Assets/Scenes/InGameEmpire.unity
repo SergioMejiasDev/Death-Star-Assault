@@ -917,6 +917,14 @@ MonoBehaviour:
     objectToPool: {fileID: 2457808379115772398, guid: 87741db79ad5ecb4383b15649e9b0c7c,
       type: 3}
     shouldExpand: 1
+  - amountToPool: 50
+    objectToPool: {fileID: 2999460821477397094, guid: beba8e81454b66440a55a129cd5f035e,
+      type: 3}
+    shouldExpand: 1
+  - amountToPool: 50
+    objectToPool: {fileID: 8697420509997763510, guid: ea37a87fbad77f44d8b47bec2d78b345,
+      type: 3}
+    shouldExpand: 1
 --- !u!1 &349765628
 GameObject:
   m_ObjectHideFlags: 0
@@ -24527,7 +24535,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9a36ed4a14f30e4fbe76afdfc3d22e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 2999460821477397094, guid: beba8e81454b66440a55a129cd5f035e, type: 3}
   shootPoint:
   - {fileID: 847423013725477727}
   - {fileID: 123347036}

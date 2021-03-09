@@ -14,7 +14,6 @@ public class Enemy : MonoBehaviour
     [Header("Shoot")]
     Transform player;
     [SerializeField] Transform shootPoint = null;
-    [SerializeField] GameObject bullet = null;
     float timeLastShoot;
     float cadency = 0.25f;
 
@@ -52,6 +51,7 @@ public class Enemy : MonoBehaviour
             {
                 transform.LookAt(destiny);
                 transform.Translate(Vector3.forward * speed * Time.deltaTime);
+                
                 if (Vector3.Distance(destiny, transform.position) < 2)
                 {
                     ChooseDestiny();
@@ -60,20 +60,21 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (other.gameObject.CompareTag("BulletPlayer"))
+        if (collision.gameObject.CompareTag("BulletPlayer"))
         {
             health--;
             sliderHealth.value = health;
 
-            Destroy(other.gameObject);
+            collision.gameObject.SetActive(false);
             
             if (health <= 0 && !dead)
             {
                 dead = true;
                 GameManager.manager.UpdateScore(1, false);
                 GameManager.manager.enemyNumber--;
+
                 GameObject deadParticles = ObjectPooler.SharedInstance.GetPooledObject("Particles");
                 if (deadParticles != null)
                 {
@@ -81,6 +82,7 @@ public class Enemy : MonoBehaviour
                     deadParticles.transform.position = transform.position;
                     deadParticles.transform.rotation = transform.rotation;
                 }
+
                 gameObject.SetActive(false);
             }
         }
@@ -92,7 +94,15 @@ public class Enemy : MonoBehaviour
     void Shoot()
     {
         timeLastShoot = Time.time;
-        Destroy(Instantiate(bullet, shootPoint.position, shootPoint.rotation), 2);
+
+        GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject("BulletEnemy");
+
+        if (bullet != null)
+        {
+            bullet.transform.position = shootPoint.position;
+            bullet.transform.rotation = shootPoint.rotation;
+            bullet.SetActive(true);
+        }
     }
 
     /// <summary>

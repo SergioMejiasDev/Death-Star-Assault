@@ -36,15 +36,15 @@ public class DeathStarEmpire : MonoBehaviour
         Cursor.visible = false;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (other.gameObject.CompareTag("BulletEnemy") || other.gameObject.CompareTag("BulletPlayer"))
+        if (collision.gameObject.CompareTag("BulletEnemy") || collision.gameObject.CompareTag("BulletPlayer"))
         {
+            collision.gameObject.SetActive(false);
+
             health--;
             sliderHealth.value = health;
             textHealth.text = (healthString + (health * 100 / maxHealth) + " %");
-
-            Destroy(other.gameObject);
 
             if (health <= 0)
             {

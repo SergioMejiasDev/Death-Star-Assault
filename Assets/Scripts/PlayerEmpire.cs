@@ -12,7 +12,6 @@ public class PlayerEmpire : MonoBehaviour
     float speedRot = 1;
 
     [Header("Shoot")]
-    [SerializeField] GameObject bullet = null;
     [SerializeField] Transform[] shootPoint = null;
     int cannonNumber = 0;
     bool shootAll;
@@ -68,14 +67,24 @@ public class PlayerEmpire : MonoBehaviour
             transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
 
             if (Input.GetKey(KeyCode.LeftShift))
+            {
                 speed = 250.0f;
+            }
+
             else
+            {
                 speed = 150.0f;
+            }
 
             if (Input.GetButton("Fire1") && Time.time - timeLastShoot > cadency)
+            {
                 Shoot();
+            }
+
             if (Input.GetButtonDown("Fire2"))
+            {
                 shootAll = !shootAll;
+            }
         }
        
         if (Input.GetButtonDown("Cancel"))
@@ -91,11 +100,12 @@ public class PlayerEmpire : MonoBehaviour
     {
         if (other.gameObject.CompareTag("BulletEnemy"))
         {
+            other.gameObject.SetActive(false);
+
             health--;
             sliderHealth.value = health;
             textHealth.text = (healthString + (health * 100 / maxHealth) + " %");
 
-            Destroy(other.gameObject);
             if (health <= 0)
             {
                 Death();
@@ -118,13 +128,29 @@ public class PlayerEmpire : MonoBehaviour
         {
             for (int i = 0; i < shootPoint.Length; i++)
             {
-                Destroy(Instantiate(bullet, shootPoint[i].position, shootPoint[i].rotation), 2);
+                GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject("BulletPlayer");
+
+                if (bullet != null)
+                {
+                    bullet.transform.position = shootPoint[i].position;
+                    bullet.transform.rotation = shootPoint[i].rotation;
+                    bullet.SetActive(true);
+                }
             }
         }
         else
         {
-            Destroy(Instantiate(bullet, shootPoint[cannonNumber].position, shootPoint[cannonNumber].rotation), 2);
+            GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject("BulletPlayer");
+
+            if (bullet != null)
+            {
+                bullet.transform.position = shootPoint[cannonNumber].position;
+                bullet.transform.rotation = shootPoint[cannonNumber].rotation;
+                bullet.SetActive(true);
+            }
+
             cannonNumber++;
+
             if (cannonNumber > 1)
             {
                 cannonNumber = 0;
@@ -156,6 +182,7 @@ public class PlayerEmpire : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
         Camera.main.transform.SetParent(null);
+        
         GameObject deadParticles = ObjectPooler.SharedInstance.GetPooledObject("Particles");
         if (deadParticles != null)
         {
@@ -163,6 +190,7 @@ public class PlayerEmpire : MonoBehaviour
             deadParticles.transform.position = transform.position;
             deadParticles.transform.rotation = transform.rotation;
         }
+        
         Destroy(gameObject);
     }
 }

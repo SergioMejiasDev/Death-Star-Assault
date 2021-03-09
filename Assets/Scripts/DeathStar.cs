@@ -72,7 +72,7 @@ public class DeathStar : MonoBehaviour
             sliderHealth.value = health;
             textHealth.text = (healthString + (health * 100 / maxHealth) + " %");
 
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
             
             if (health <= 0)
             {

@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4524042254062304235}
   - component: {fileID: 907335937844104098}
   - component: {fileID: -2525458214240673334}
+  - component: {fileID: 3171755441605150537}
   m_Layer: 0
   m_Name: BulletEmpire
   m_TagString: BulletPlayer
@@ -31,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2999460821477397094}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.013, y: 0.145, z: 2.15}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children: []
   m_Father: {fileID: 0}
@@ -95,7 +96,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2
+  m_Radius: 50
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!96 &2999460821477397095
 TrailRenderer:
@@ -252,7 +253,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -1617778944787999455, guid: 850955286d85b184a9c5daf70611f75a,
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 90fecabd0444b46488a1cca974026535, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0.01
   m_Pitch: 1
   Loop: 0
@@ -337,3 +338,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3171755441605150537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2999460821477397094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4c5b30a44a613d49aa85ec12cafa2c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootSound: {fileID: -2525458214240673334}
+  trailRenderer: {fileID: 2999460821477397095}
+  rb: {fileID: 4524042254062304235}

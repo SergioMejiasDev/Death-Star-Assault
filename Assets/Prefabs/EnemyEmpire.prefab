@@ -24116,7 +24116,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3395450858815216945}
   m_LocalRotation: {x: 0.07597241, y: -0.1347125, z: 0.010359643, w: 0.9879137}
-  m_LocalPosition: {x: 349.49115, y: 105.18115, z: 304.33228}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 7, y: 7, z: 7}
   m_Children:
   - {fileID: 2032967854668918276}
@@ -24139,7 +24139,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 150
   shootPoint: {fileID: 3395450857645100219}
-  bullet: {fileID: 8697420509997763510, guid: 3a7ab3e9378d92942b1d52a9c00a3738, type: 3}
   maxHealth: 2
   health: 0
   sliderHealth: {fileID: 1800660804424662683}
@@ -26362,7 +26361,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.19, y: 0.76}
+  m_AnchoredPosition: {x: 0, y: 0.76}
   m_SizeDelta: {x: 56.89923, y: 20.432312}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &834797334760171486

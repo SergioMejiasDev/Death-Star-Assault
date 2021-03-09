@@ -14,7 +14,6 @@ public class EnemyEmpire : MonoBehaviour
 
     [Header("Shoot")]
     [SerializeField] Transform shootPoint = null;
-    [SerializeField] GameObject bullet = null;
     float timeLastShoot;
     float cadency = 0.25f;
 
@@ -41,7 +40,9 @@ public class EnemyEmpire : MonoBehaviour
             if ((player != null) && (Vector3.Distance(transform.position, player.position) < 300))
             {
                 transform.LookAt(player);
+
                 shootPoint.LookAt(player);
+
                 if (Time.time - timeLastShoot > cadency)
                 {
                     Shoot();
@@ -50,6 +51,7 @@ public class EnemyEmpire : MonoBehaviour
             else if ((deathStar != null) && (Vector3.Distance(transform.position, deathStar.position) < 500))
             {
                 transform.LookAt(deathStar);
+
                 if (Time.time - timeLastShoot > cadency)
                 {
                     Shoot();
@@ -58,7 +60,9 @@ public class EnemyEmpire : MonoBehaviour
             else
             {
                 transform.LookAt(destiny);
+
                 transform.Translate(Vector3.forward * speed * Time.deltaTime);
+
                 if (Vector3.Distance(destiny, transform.position) < 2)
                 {
                     ChooseDestiny();
@@ -67,14 +71,15 @@ public class EnemyEmpire : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider x)
+    private void OnTriggerEnter(Collider collision)
     {
-        if (x.gameObject.CompareTag("BulletPlayer"))
+        if (collision.gameObject.CompareTag("BulletPlayer"))
         {
+            collision.gameObject.SetActive(false);
+
             health--;
             sliderHealth.value = health;
 
-            Destroy(x.gameObject);
             if (health <= 0 && !dead)
             {
                 dead = true;
@@ -98,7 +103,15 @@ public class EnemyEmpire : MonoBehaviour
     void Shoot()
     {
         timeLastShoot = Time.time;
-        Destroy(Instantiate(bullet, shootPoint.position, shootPoint.rotation), 2);
+        
+        GameObject bullet = ObjectPooler.SharedInstance.GetPooledObject("BulletEnemy");
+
+        if (bullet != null)
+        {
+            bullet.transform.position = shootPoint.position;
+            bullet.transform.rotation = shootPoint.rotation;
+            bullet.SetActive(true);
+        }
     }
 
     /// <summary>
